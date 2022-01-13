@@ -1,0 +1,75 @@
+
+body{
+
+    background-color:#F5DEB3;
+}
+
+#navigation-bar{
+
+    margin-bottom:1%;
+}
+#edit-container{
+    position: relative;
+    left:80%;
+    top:15%;
+    font-size:large;
+}
+
+#edit-word{
+    text-decoration:none;
+    color:black;
+}
+
+#user-edit-icon{
+    font-size:1.4em;
+}
+#user-edit-icon:hover{
+    cursor:pointer;
+}
+#profile-background{
+    background-color: #f3c998;
+}
+#profile-image{
+    border-radius:5px;
+}
+
+
+.groups-button{
+    text-decoration:none;
+ 
+    font-weight: 800;
+}
+#joined-groups-card,#owned-groups-card{
+    display:inline-block;
+    width:40% !important;
+    background-color: #f3dec6;
+}
+
+#message-box-container{
+    position:relative;
+    left:70%;
+    top:10%;
+    font-size:1.5em;
+    font-weight: 600;
+}
+#message-box-container:hover{
+    box-shadow:0.01em 0.01em 0.1em 0.1em #964B00;
+}
+#message-link{
+    text-decoration:none;
+    color:black;
+    padding:10%;
+}
+#username{
+    font-size:2em;
+    font-weight: 500;
+   
+}
+#age{
+    font-size:2em;
+    font-weight: 500;
+    position:relative;
+    right:98%;
+    top:18%;
+  
+}
