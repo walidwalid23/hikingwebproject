@@ -1,0 +1,94 @@
+body{
+    background-image:url("assets/images/hiking.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position:0% 15%;
+    }
+    /*CSS OF INITIAL HOMEPAGE*/
+    button:hover{
+        box-shadow:0.03em 0.01em 0.3em 0.12em #964B00;
+        cursor:pointer;
+    }
+    
+    #quote-div{
+       
+        font-size:5em ;
+        font-family:"Lobster";
+        
+    }
+    #quote-one{
+    position:absolute;
+    left:30%;
+    }
+    #adventure-word{
+        position:absolute;
+        left:40%;
+        top:10%;
+      
+    }
+    #login-button{
+        position:absolute;
+        left:45%;
+        top:39%;
+        font-size:2em;
+        border: 4px solid #1B140A;
+        border-radius: 1em;
+        padding:0.2em;
+      color:#1B140A;
+    
+    }
+    #noaccount-word{
+        position:absolute;
+        left:43%;
+        top:45%;
+        font-size:1.2em;
+        
+    }
+    #signup-button{
+        position:absolute;
+        left:57%;
+        top:46.8%;
+        font-size:1em;
+        border: 4px solid #1B140A;
+        border-radius: 1em;
+        padding:0.2em;
+        color:#1B140A;
+    }
+    
+    /*CSS OF LOGIN AND SIGNUP FORMS*/
+    #login-form{
+    display: none;
+    position:absolute;
+    left:45%;
+    top:100%;
+    font-size:1.3em;
+    }
+    #signup-form{
+        display: none;
+        position:absolute;
+        left:45%;
+        top:100%;
+        font-size:1.3em;
+        }
+    .fields{
+    border:4px solid black;
+    border-radius:1em;
+    padding:0.4em;
+    }
+    .submit{
+        position:relative;
+        top:10px;
+        border-radius:1em;
+        padding:0.4em;
+        font-size:0.7em;
+    }
+    .submit:hover{
+        cursor:pointer;
+        box-shadow:0.02em 0.01em 0.2em 0.1em #964B00 ;
+    }
+    
+    .error-message{
+        font-size:0.75em;
+        color:red;
+    }
+   
