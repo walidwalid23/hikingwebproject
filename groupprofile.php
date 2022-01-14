@@ -103,6 +103,9 @@ echo '<div style="display:none" id="error-div" class="alert alert-danger" role="
     echo ' <button  id="joined-button" class="btn btn-primary" type="button">
     Joined
   </button>';
+  echo ' <button  id="message-admin-button" class="btn btn-primary" type="button">
+    Message Admin
+  </button>';
   echo ' <button onclick="goToReviewPage()" id="review-button" class="btn btn-warning" type="button">
   Review Group
 </button>';
@@ -143,6 +146,14 @@ Add/Delete Administrators
  echo ' <button style="margin-left:30%" id="join-button" class="btn btn-secondary" type="button">
   Join Group
 </button>';
+//show message admin button
+//get the id of the first admin
+$all_admins_result=$db_conn->query("SELECT* from groupadmins WHERE groupID='$group_id'");
+$first_admin_id=mysqli_fetch_all($all_admins_result,MYSQLI_ASSOC)[0]["administratorID"];
+
+echo ' <a href="chat.php?receiverid='.$first_admin_id.'" id="message-admin-button" class="btn btn-primary" type="button">
+    Message Admin
+  </a>';
   }
  
 
