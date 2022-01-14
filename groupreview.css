@@ -1,0 +1,55 @@
+body{
+
+    background-color:#F5DEB3;
+}
+#rate-word{
+    margin-top:5%;
+    margin-left:10.2%;
+}
+#stars-div{
+    font-size:2em;
+    margin-left:10%;
+    
+}
+
+.star:hover{
+cursor:pointer;
+font-size:1.5em;
+
+}
+.review-word{
+    margin-left:10%;
+}
+
+#all-review-div{
+   border:4px solid black;
+   width:50%;
+   height:70%;
+}
+
+#submit-button{
+    position:relative;
+    left:10%;
+    margin-top:2%;
+}
+#cancel-button{
+    position:relative;
+    left:20%;
+    margin-top:2%;
+}
+#cancel-button-group{
+    position:relative;
+    left:20%;
+    margin-top:2%; 
+}
+#cancel-button-home{
+    position:relative;
+    left:20%;
+    margin-top:2%;
+}
+.error-text{
+    margin-left:10%;
+    color:red;
+    font-size:1.3em;
+
+}
