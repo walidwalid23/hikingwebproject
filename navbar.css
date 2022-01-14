@@ -1,0 +1,79 @@
+#search-bar{
+
+    position: absolute;
+    left:55%;
+    width:20%;
+   }
+   
+   .nav-item{
+       font-size:1.2em;
+       font-weight: 700;
+       margin-left:1em;
+   
+   }
+   
+#signout-button{
+    position: absolute;
+    left:90%;
+    
+}
+
+#search-button{
+    position:absolute;
+    left:76%;
+    font-size:1.1em;
+    border: 3px solid #6F4E37;
+    border-radius: 1em;
+    padding:0.2em;
+    color:#1B140A;
+    background-color: white;
+
+}
+#search-button:hover{
+    box-shadow:0.02em 0.01em 0.2em 0.1em #964B00;
+    cursor:pointer;
+}
+
+#all-search-results{
+    position: absolute;
+    left:55%;
+    top:76%;
+    background-color:white;
+    width:300px;
+    border-radius:5%;
+}
+li{
+    overflow-wrap:break-word;
+}
+.nav-item:hover{
+    box-shadow:0.02em 0.01em 0.2em 0.1em #964B00;
+}
+#navigation-bar{
+  background-color: #EADDCA;
+}
+#cart{
+    position:relative;
+    left:10%;
+    
+}
+
+#cart-badge{
+    background-color: red;
+    height:0.7%;
+    position:relative;
+    left:26%;
+    bottom:0.5em;
+    font-size:0.7em;
+
+}
+#inbox-badge{
+    color:red;
+    font-weight:700;
+    position:relative;
+    right:24%;
+    bottom:1em;
+    font-size:0.9em;
+}
+#open-box-icon{
+    color:red;
+}
