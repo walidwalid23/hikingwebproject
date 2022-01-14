@@ -1,0 +1,62 @@
+body{
+    background-color:#F5DEB3;
+}
+#cart-word{
+    background-color:white;
+    margin-bottom:0px;
+  padding-left: 43%;
+}
+
+#trip-title{
+font-size:x-large;
+font-weight:700;
+
+}
+
+#location-title{
+    position: relative;
+    font-size: large;
+    left:1%;
+    font-weight: 800;
+    top:-55px;
+}
+
+
+#trip-location{
+    position: relative;
+    font-size: large;
+    bottom:3em;
+    left:2%;
+
+}
+#price-title{
+    position: relative;
+    font-size: large;
+    right:9%;
+    font-weight: 800;
+    bottom:10%;
+}
+
+#trip-price{
+    position: relative;
+    font-size: large;
+    right:6%;
+}
+#total-price{
+    font-size: x-large;
+    font-weight: 800;
+    margin-left:75%;
+}
+#checkout-button{
+    margin-left:90%;
+    font-size: large;
+}
+#delete-trip{
+    text-decoration: none;
+    font-size: x-large;
+    position: relative;
+    left:50%;
+}
+#delete-trip:hover{
+    color:black;
+}
