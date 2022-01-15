@@ -16,37 +16,41 @@ sendMessageButton.addEventListener("click", async function () {
         let currentMinutes = currentDateObject.getMinutes().toString();
         let currentSeconds = currentDateObject.getSeconds().toString();
         let currentDate = currentHours + ":" + currentMinutes + ":" + currentSeconds;
-        //SEND A REQUEST TO THE SERVER USING AJAX
-        let request = await axios.post("http://localhost/webproject/addmessage.php",
+        if (!message) {
+            errorP.innerText = "You Can't Leave The Message Field Empty";
+        }
+        else {
+            //SEND A REQUEST TO THE SERVER USING AJAX
+            let request = await axios.post("http://localhost/webproject/addmessage.php",
 
-            {
-                chatID: chatID,
-                message: message,
-                currentDate: currentDate,
-                seenReceiver: false,
-                receiverID: receiverID,
-                senderID: senderID,
-                senderType: senderType,
-                receiverType: receiverType
+                {
+                    chatID: chatID,
+                    message: message,
+                    currentDate: currentDate,
+                    seenReceiver: false,
+                    receiverID: receiverID,
+                    senderID: senderID,
+                    senderType: senderType,
+                    receiverType: receiverType
 
 
 
+
+                }
+            );
+            console.log(request);
+            if (request.data.success) {
+                //refrech the page to show the inserted message
+
+                window.location.href = "chat.php?receiverid=" + receiverID;
+            }
+
+            else {
+
+                errorP.innerText = request.data.error;
 
             }
-        );
-        console.log(request);
-        if (request.data.success) {
-            //refrech the page to show the inserted message
-
-            window.location.href = "chat.php?receiverid=" + receiverID;
         }
-
-        else {
-
-            errorP.innerText = request.data.error;
-
-        }
-
     }
     catch (error) {
         errorP.innerText = error;

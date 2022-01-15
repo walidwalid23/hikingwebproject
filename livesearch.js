@@ -41,6 +41,7 @@ searchInput.addEventListener("input", async function (eventObj) {
                     tripLink.href = "livesearchtrip.php?tripid=" + tripid;
                     tripLink.style.textDecoration = 'none';
                     tripLink.append(tripTitleList);
+                    tripLink.classList.add("searchresult");
                     //add the link of the trip to the list of search results
                     allSearchResults.append(tripLink);
                     //add the trip ID to the current showed trips array

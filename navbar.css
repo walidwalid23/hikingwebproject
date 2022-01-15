@@ -77,3 +77,8 @@ li{
 #open-box-icon{
     color:red;
 }
+
+
+.searchresult:hover{
+    color:black;
+}

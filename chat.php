@@ -133,7 +133,7 @@ echo '
 <textarea id="message-input" type="text" placeholder="Enter A Message..." rows="3"></textarea>
 <button id="chat-input-send-button" type="button" class="btn btn-primary">Send</button>
 <div>
-<h4 id="error-p" style="color:red"></h4>';
+<h5 id="error-p" style="color:red"></h5>';
 
 /////////UPDATE THE VIEWED MESSAGES OF THE USER WHO SENT TO US TO SEEN////////////////
 $update_seen_result=$db_conn->query("UPDATE message SET seenreceiver=true WHERE senderID='$receiver_id'");
