@@ -16,13 +16,13 @@ try{
     include 'navbar.php';
       //CONNECT TO DATABASE
 $db_conn=mysqli_connect("localhost","root","","hiking");
- if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database<br>';}
+ if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database</h5><br>';}
  else{
 //get the receiver hiker id and tpe
 $receiver_id=$_GET["receiverid"];
 //get the receiver hiker type
 $type_result=$db_conn->query("SELECT hiker.type FROM hiker WHERE hikerID='$receiver_id'");
-$receiver_type=mysqli_fetch_array($type_result)["type"];
+$chat_receiver_type=mysqli_fetch_array($type_result)["type"];
 // get the sender id and type
 $current_hiker_id=($_COOKIE["remember"]=="yes")?$_COOKIE["ID"]:$_SESSION["ID"];
 $current_hiker_type=($_COOKIE["remember"]=="yes")?$_COOKIE["type"]:$_SESSION["type"];
@@ -56,7 +56,7 @@ else{
 //generate a unique chat id
 $chat_id=time()*rand(2,100);
 //ADDING TRUE THEN FALSE BECAUSE PERSON1 IS THE CURRENT HIKER AND HE SAW THE CHAT(SINCE HE IS THE ONE WHO OPENED IT)
-$chat_result=$db_conn->query("INSERT INTO chat VALUES('$chat_id','$current_hiker_id','$receiver_id','$current_hiker_type','$receiver_type',true,false)");
+$chat_result=$db_conn->query("INSERT INTO chat VALUES('$chat_id','$current_hiker_id','$receiver_id','$current_hiker_type','$chat_receiver_type',true,false)");
 if($chat_result){
 //CHAT IS CREATED SUCCESSFULLY
 }
@@ -77,7 +77,6 @@ for($i=0;$i<count($message_data);$i++){
  $message_text=$message_data[$i]["messagetext"];
  $message_date=$message_data[$i]["messagedate"];
  $sender_id=$message_data[$i]["senderID"];
- $receiver_type=$message_data[$i]["receiverID"];
  $sender_type=$message_data[$i]["sendertype"];
  $receiver_type=$message_data[$i]["receivertype"];
  $message_seen=($message_data[$i]["seenreceiver"]==1)?true:false;
@@ -87,47 +86,92 @@ for($i=0;$i<count($message_data);$i++){
  $sender_array=mysqli_fetch_array($sender_result);
  $sender_username=$sender_array["username"];
  $sender_image_path="profilepictures/".$sender_array["profileImage"];
-  //GET THE DATA OF THE RECEIVER FROM THE HIKER TABLE
-  $receiver_result=$db_conn->query("SELECT* FROM hiker WHERE hikerID='$receiver_id' ");
-  $receiver_array=mysqli_fetch_array($receiver_result);
-  $receiver_username=$receiver_array["username"];
-  $receiver_image_path="profilepictures/".$receiver_array["profileImage"];
 
 if($current_hiker_id==$sender_id){
     //IF THE CURRENT HIKER IS THE PERSON WHO SENT THIS MESSAGE SHOW THE MESSAGE THIS WAY
+if($message_seen){
+    if($sender_type=="auditor"){
+//SHOW THE MESSAGE IN A CERTAIN STYLE IF IT WAS SENT BY AUDITOR
 echo '
+    <div  class="container sent">
+      <img src="'.$sender_image_path.'" id="img-left" alt="Avatar" style="width:100%;">
+      <span id="sender-username">'.$sender_username.' </span>
+      <p  class="seen-style" id="auditor-chat-message-left" >
+      '.$message_text.'
+    </p>';
+
+    }
+    else{
+        //if the type is normal user
+    echo '
+    <div class="container sent">
+      <img src="'.$sender_image_path.'" id="img-left" alt="Avatar" style="width:100%;">
+      <span id="sender-username">'.$sender_username.' </span>
+      <p class="seen-style" id="chat-message-left" >
+      '.$message_text.'
+    </p>';
+    }
+    //show the double check since the message was seen
+    echo '<i id="seen" class="fas fa-check-double"></i>';
+    
+}
+
+else{
+    if($sender_type=="auditor"){
+        //SHOW THE MESSAGE IN A CERTAIN STYLE IF IT WAS SENT BY AUDITOR
+        echo '
+        <div class="container sent">
+          <img src="'.$sender_image_path.'" id="img-left" alt="Avatar" style="width:100%;">
+          <span id="sender-username">'.$sender_username.' </span>
+          <p class="unseen-style" id="auditor-chat-message-left" >
+          '.$message_text.'
+        </p>';
+    }
+    else{
+       //if the type is normal user
+    echo '
 <div class="container sent">
   <img src="'.$sender_image_path.'" id="img-left" alt="Avatar" style="width:100%;">
   <span id="sender-username">'.$sender_username.' </span>
-  <p id="chat-message-left" >
+  <p class="unseen-style" id="chat-message-left" >
   '.$message_text.'
 </p>';
-if($message_seen){
-    echo '<i class="fas fa-check-double"></i>';
-}
-else{
+    }
+echo '<hr id="message-row-unseen">';
     echo '<i class="fas fa-check"></i>';
+
 }
 echo'<span class="time time-right">'. $message_date.'</span>
 </div>';
 }
 else{
+
+ //SHOW THE DATA OF THE SENDER AGAIN IN DIFFERENT STYLE SINCE THE SENDER IS THE OTHER USER THIS TIME
+ if($sender_type=="auditor"){
+    echo '<div class="container received">
+    <img class="right" src="'.$sender_image_path.'" id="img-right"  alt="Avatar" style="width:100%;">
+    <span id="receiver-username">'.$sender_username.'</span>
+    <p id="auditor-chat-message-right"  >
+    '.$message_text.'
+  </p>';
+
+ }
+ else{
 echo '<div class="container received">
-  <img class="right" src="'.$receiver_image_path.'" id="img-right"  alt="Avatar" style="width:100%;">
-  <span id="receiver-username">'.$receiver_username.'</span>
+  <img class="right" src="'.$sender_image_path.'" id="img-right"  alt="Avatar" style="width:100%;">
+  <span id="receiver-username">'.$sender_username.'</span>
   <p id="chat-message-right"  >
   '.$message_text.'
-
-</p>
-<span class="time time-left">'. $message_date.'</span>
+</p>';
+ }
+echo '<span class="time time-left">'. $message_date.'</span>
 </div>
-
 ';
 }
 }
 
 
-
+//SENDING THE CHAT 
 echo '
 <div id="chat-input">
 <textarea id="message-input" type="text" placeholder="Enter A Message..." rows="3"></textarea>
@@ -154,7 +198,7 @@ echo '<p id="chat-id" style="display:none">'.$chat_id.'</p>';
 echo '<p id="sender-id" style="display:none">'.$current_hiker_id.'</p>';
 echo '<p id="receiver-id" style="display:none">'.$receiver_id.'</p>';
 echo '<p id="sender-type" style="display:none">'.$current_hiker_type.'</p>';
-echo '<p id="receiver-type" style="display:none">'.$receiver_type.'</p>';
+echo '<p id="receiver-type" style="display:none">'.$chat_receiver_type.'</p>';
 echo '<p id="messages-count" style="display:none">'.$current_messages_count.'</p>';
  }
 }

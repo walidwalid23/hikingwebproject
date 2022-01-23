@@ -50,10 +50,36 @@ body {
   #chat-message-left{
    margin-left:10%;
    overflow-wrap:break-word;
+  
+  }
+  #auditor-chat-message-left{
+    margin-left:10%;
+    overflow-wrap:break-word;
+    color:red;
+    font-weight: 900;
+   
+   }
+  .unseen-style{
+    font-weight: bold;
+  }
+  
+  #message-row-unseen{
+    border:2px solid black;
+  }
+  .seen-style{
+    color:black;
+    font-style: italic;
+    margin-left:10%;
   }
   #chat-message-right{
     margin-left:83%;
     overflow-wrap:break-word;
+   }
+   #auditor-chat-message-right{
+    margin-left:83%;
+    overflow-wrap:break-word;
+    color:red;
+    font-weight: 900;
    }
   #chat-input{
     margin-top:1%;

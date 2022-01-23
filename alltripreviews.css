@@ -1,0 +1,24 @@
+.comment-img{
+ width:90px;
+height:60px;
+}
+
+.commenter-username{
+    font-weight: bold;
+}
+
+.auditor-comment{
+    color:red;
+    font-weight: 900;
+ 
+}
+
+.auditor-username{
+    text-shadow: 1px 1px 4px #ff0000;
+      
+}
+.commenter-profile-link{
+    text-decoration: none;
+    /*to allow the elements inside the <a> to get back to their original colors*/
+    color:inherit;
+}

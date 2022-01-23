@@ -15,19 +15,6 @@
 
 </script>
 
-    <?php
-   
-    /*
-
-$username=$_COOKIE["username"];
-$age=$_COOKIE["age"];
-
-echo "<h1>Welcome: ".$username."</h1>"; 
-echo "<h3>Age: ".$age."</h3>"; 
-echo $_COOKIE["profileImage"];
-*/
- 
-?>
 
 <?php
 echo '<div class="container-fluid">';
@@ -39,9 +26,23 @@ include "navbar.php";
 <p style="margin-left:43%">'.$_GET["success"].'</p>
 </div>';
 }
-    
-    
+
+//CONNECTING TO THE DATABASE
+$db_conn=mysqli_connect("localhost","root","","hiking");
+if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database</h5><br>';}
+//get the current hiker id
+$current_hiker_id=($_COOKIE["remember"]=="yes")?$_COOKIE["ID"]:$_SESSION["ID"];
+//CHECK IF THE CURRENT USER HAS A PENALTY TO SHOW IT TO HIM
+$result=$db_conn->query("SELECT* from penalty WHERE administratorID='$current_hiker_id'");
+$penalty_array=mysqli_fetch_array($result);
+if($penalty_array){
+    //the user has a penalty show it to him
+include 'penaltypopup.php';
+}
+else{
     include 'userjoinedgroupstrips.php';
+
+}
     
     ?>
 

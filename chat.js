@@ -41,8 +41,8 @@ sendMessageButton.addEventListener("click", async function () {
             console.log(request);
             if (request.data.success) {
                 //refrech the page to show the inserted message
+                location.reload();
 
-                window.location.href = "chat.php?receiverid=" + receiverID;
             }
 
             else {
@@ -60,6 +60,7 @@ sendMessageButton.addEventListener("click", async function () {
 
 )
 
+
 /////////////MAKING THE CHAT REAL TIME BY LISTENING TO DATABASE CHANGES////////////////
 let currentHikerID = senderID;
 let currentMessagesCount = document.querySelector("#messages-count").innerText;
@@ -67,12 +68,13 @@ let currentMessagesCount = document.querySelector("#messages-count").innerText;
 
 async function checkNewMessage() {
     try {
-        console.log("listening");
+
         let response = await axios.get("chatlistener.php?hikerid=" + currentHikerID);
 
         if (response.data.newMessagesCount) {
             if (response.data.newMessagesCount > currentMessagesCount) {
                 //reload the page if the user received a new message
+                // window.location.href = "chat.php?receiverid=" + receiverID;
                 location.reload();
             }
         }
@@ -80,6 +82,7 @@ async function checkNewMessage() {
         else if (response.data.error) {
             document.write(response.data.error);
         }
+        checkNewMessage();
     }
 
     catch (error) {
@@ -87,8 +90,13 @@ async function checkNewMessage() {
     }
 }
 
+
+
 function listenToMessages() {
-    window.requestAnimationFrame(listenToMessages);
+
+    // window.setTimeout(checkNewMessage, 0);
     checkNewMessage();
+
+
 }
 listenToMessages();

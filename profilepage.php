@@ -29,7 +29,7 @@
 //connecting to database
 try{
 $db_conn=mysqli_connect("localhost","root","","hiking");
-if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database<br>';}   
+if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database</h5>';}   
  //getting the hiker id from the url 
 $hiker_id=$_GET["hikerid"];
 //get the current hiker id
@@ -41,6 +41,7 @@ $hiker_data=mysqli_fetch_array($result);
 $username=$hiker_data["username"];
 $imageName=$hiker_data["profileImage"];
 $age=$hiker_data["age"];
+$hiker_type=$hiker_data["type"];
 //new profile style
  echo '
 <div class="container-fluid">
@@ -54,6 +55,18 @@ echo "</div>";
 echo '<div class="col-3">';
 echo '<p id="age">'.$age.'</p>';
 echo "</div>";
+//show the auditor badge for auditors
+if($hiker_type=="auditor"){
+  echo '<div class="col-1">';
+  echo '<i id="auditor-badge" class="fas fa-user-shield"></i>';
+  echo "</div>";
+}
+else if($hiker_type=="HR"){
+  echo '<div class="col-1">';
+  echo '<i id="hr-badge" class="far fa-id-badge"></i>';
+  echo "</div>";
+
+}
 //show the message box only for different users other than current user
 if($current_hiker_id!=$hiker_id){
   echo '<div class="col-2">';
@@ -71,7 +84,27 @@ if($current_hiker_id!=$hiker_id){
     ';
     echo "</div>";
     }
-  
+    //show the add penalty button if the current hiker is an HR
+if($current_hiker_id==$hiker_id && $hiker_type=="HR"){
+  echo '
+    <div id="penalty-container">
+    <a href="penalty.php" id="penalty-word"><b>Add Penalty</b></a>
+     <i class="fas fa-hand-paper"></i>
+    </div>
+    ';
+  }
+  //show the contact hr for the auditor
+  if($current_hiker_id==$hiker_id && $hiker_type=="auditor"){
+    echo '
+      <div id="contactHR-container">
+      <a href="chat.php?receiverid=2" id="contactHR-word">
+      <b>Contact HR</b>
+      <i id="phone-icon" class="fas fa-phone"></i>
+      </a>
+      </div>
+      ';
+    }
+//end of row
 echo '</div>';
 
 //GET THE JOINED GROUPS FROM THE DATABASE
@@ -112,7 +145,7 @@ echo '<div id="owned-groups-card" class="card" style="width: 18rem;">
 echo '</div>';
 }
 catch(Exception $error){
-  echo '<h5 style="color:red;margin-left:200px;">'.$error.'<br>';
+  echo '<h5 style="color:red;margin-left:200px;">'.$error.'</h5>';
 }
 ?>
 </div>

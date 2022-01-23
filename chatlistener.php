@@ -4,7 +4,7 @@ $current_hiker_id=$_GET["hikerid"];
 
 //CONNECT TO DATABASE
 $db_conn=mysqli_connect("localhost","root","","hiking");
- if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database<br>';}
+ if(!$db_conn){ echo '<h5 style="color:red;margin-left:200px;">Couldn"t Connect To Database</h5><br>';}
  else{
      
    //GET THE NEW MESSAGES COUNT TO USE FOR REAL TIME LISTENING 

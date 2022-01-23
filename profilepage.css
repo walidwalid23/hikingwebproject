@@ -9,8 +9,8 @@ body{
     margin-bottom:1%;
 }
 #edit-container{
-    position: relative;
-    left:80%;
+    position: absolute;
+    left:90%;
     top:15%;
     font-size:large;
 }
@@ -46,10 +46,11 @@ body{
 }
 
 #message-box-container{
-    position:relative;
-    left:70%;
-    top:10%;
-    font-size:1.5em;
+
+    position: absolute;
+    left:90%;
+    top:15%;
+    font-size:x-large;
     font-weight: 600;
 }
 #message-box-container:hover{
@@ -72,4 +73,46 @@ body{
     right:98%;
     top:18%;
   
+}
+
+#auditor-badge{
+    position: absolute;
+    font-size:x-large;
+    right:60%;
+    top:12%;
+    color:rgb(3, 3, 54);
+    text-shadow:1px 1px 5px red;
+}
+#hr-badge{
+    position: absolute;
+    font-size:xx-large;
+    right:65%;
+    top:12%;
+    color:rgb(3, 3, 54);
+    text-shadow:1px 1px 5px rgb(17, 4, 4);
+}
+#penalty-container{
+    position: absolute;
+    left:25%;
+    top:30%;
+    font-size:x-large;
+}
+
+#penalty-word{
+    text-decoration:none;
+    color:black;
+}
+#contactHR-container{
+    position: absolute;
+    left:89.5%;
+    top:30%;
+    font-size:large;
+}
+
+#contactHR-word{
+    text-decoration:none;
+    color:black;
+}
+#phone-icon{
+    font-size:x-large;
 }
